@@ -1,0 +1,69 @@
+---
+title: "Mortgage Calculator"
+author: "Andrea"
+date: "2026-11-12"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Mortgage
+
+Buying a home is one of the most significant investments a person will make in their lifetime. Since people rarely have the entire amount of capital needed, a mortgage allows them to spread the cost of the purchase over time through financing provided by a financial institution and subsequent repayment in periodic installments. The amount of each installment depends primarily on the principal amount financed, the term of the mortgage, and the interest rate. Understanding the relationship between these variables is therefore essential for assessing the affordability of the loan.
+
+## The math beyond the mortgage (1)
+**Note**: The author of this document is not an economist, but a mathematician interested in the subject. Please excuse me if I have made any mistakes.
+
+Calculating the monthly payment on a mortgage is no easy task. In fact, it requires knowledge of the fundamental laws of finance governing the exchange of money between two parties, $A$ and $B$
+
+$$
+  \sum_{h=1}^{S} \frac{A_k}{(1+i)^{t_h}} = \sum_{k=1}^{T} \frac{B_k}{(1+i)^{t_k}},
+$$
+where $A_k$ and $B_k$ are the amounts paid by parties $A$ and $B$, respectively, and $i$ is the effective interest rate.
+
+## The math beyond the mortgage (2)
+The law mentioned above covers a variety of situations, but the issue is greatly simplified in the case of a fixed-rate mortgage: in this case, the sum on the left is simply the principal that was granted to you at time 0, while $B_k = B$ $\forall k$. This gives
+$$
+  C = \sum_{k=1}^T \frac{B}{(1+i)^{t_k}}.
+$$
+Using basic mathematical concepts (the sum of geometric series), we obtain
+$$
+  C = B \frac{p}{1-p} (1-p^T) \qquad \iff B = C \frac{1-p}{p(1-p^T)},
+$$
+where $p = \frac{1}{1+i}$.
+
+
+## Implementing the math
+With the knowledge of mathematical principles behind the calculation, it is easy to create an automatic calculator for monthly payments. Below, `capital`, `year`, and `rate` are the variables representing the principal amount, the number of years of the mortgage, and the interest rate, respectively.
+
+```
+
+monthly_rate <- rate/12
+p <- 1/(1+monthly_rate)
+T <- (years*12+1)
+coefficient <- ((1-p^(T))/(1-p))-1
+R <- capitale()/coefficient
+R <- round(R,2)
+
+```
+
+
+## 
+
+<div style="
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+">
+  <span style="
+    font-size: 70px;
+    font-weight: bold;
+  ">
+    Thanks for your attention!
+  </span>
+</div> 
+
