@@ -1,0 +1,20 @@
+---
+title: "Mortgage Calculator"
+author: "Andrea"
+date: "2026-11-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+**Mortgage Calculator** is a Shiny application developed in R that calculates the monthly payment of a mortgage based on:
+- Mortgage amount
+- Mortgage duration
+- Annual interest rate
+
+To use the app you have to insert the 3 parameters mentioned below and then click on the button **Calculate monthly payment**. The result will appear below the button.
+
+If you want to change the parameters, you will need to re-run the app, i.e. click again on the button **Calculate monthly payment**
